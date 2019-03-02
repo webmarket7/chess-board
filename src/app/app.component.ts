@@ -5,6 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.pug',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
-  title = 'chess-board';
+
+    constructor() {
+    }
+
 }

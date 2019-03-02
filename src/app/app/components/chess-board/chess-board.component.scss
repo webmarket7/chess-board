@@ -1,0 +1,68 @@
+@import 'base/_var';
+
+.chess-board {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    flex-wrap: nowrap;
+    width: 800px;
+    height: 800px;
+
+    &__row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: stretch;
+        flex: 1;
+
+        &:first-child {
+            .chess-board__cell {
+                border-top-width: 2px;
+            }
+        }
+
+        &:last-child {
+            .chess-board__cell {
+                border-bottom-width: 2px;
+            }
+        }
+    }
+
+    &__cell {
+        position: relative;
+        border-width: 1px;
+        border-style: solid;
+        border-color: $color-2;
+        flex: 1;
+
+        &:first-child {
+            border-left-width: 2px;
+        }
+
+        &:last-child {
+            border-right-width: 2px;
+        }
+
+        &-coordinate {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 2px;
+        }
+
+        &.light {
+            .chess-board__cell-coordinate {
+                color: $color-2;
+            }
+        }
+
+        &.dark {
+            .chess-board__cell-coordinate {
+                color: $color-3;
+            }
+        }
+    }
+}

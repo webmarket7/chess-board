@@ -1,0 +1,23 @@
+.chess-board
+    .chess-board__row('*ngFor'='let row of rows; odd as oddRow; even as evenRow; first as firstRow; last as lastRow; trackBy: trackByFn')
+        .chess-board__cell(
+            '*ngFor'='let column of columns; odd as oddColumn; even as evenColumn; first as firstColumn; last as lastColumn; trackBy: trackByFn'
+            '[ngClass]'='evenRow && oddColumn || oddRow && evenColumn ? "dark" : "light"'
+            '[ngStyle]'='{backgroundColor: evenRow && oddColumn || oddRow && evenColumn ? colorSchema.darkCellColor : colorSchema.lightCellColor}'
+            '[title]'='column + row'
+        )
+            ng-container('*ngIf'='areCoordinatesVisible')
+                .chess-board__cell-coordinate(
+                    '*ngIf'='firstColumn'
+                    '[ngStyle]'='{top: 0, left: 0}'
+                ) {{ row }}
+                .chess-board__cell-coordinate(
+                    '*ngIf'='lastRow'
+                    '[ngStyle]'='{bottom: 0, right: 0}'
+                ) {{ column }}
+            ng-container('*ngIf'='position[column + row] as piece')
+                chess-piece(
+                    '[type]'='piece.type'
+                    '[side]'='piece.side'
+                    '[colorSchema]'='colorSchema'
+                )
